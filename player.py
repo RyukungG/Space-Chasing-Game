@@ -5,24 +5,24 @@ class Player:
         self.x = 0
         self.y = 0
         self.speed = 10
+        self.color = "white"
         self.turtle = Turtle()
         self.screen = Screen()
         self.turtle.penup()
-
-    def player_speed(self):
         self.turtle.speed(self.speed)
+        self.turtle.color(self.color)
 
     def walk_forward(self):
-        self.turtle.forward(1)
+        self.turtle.forward(5)
 
     def walk_backwards(self):
-        self.turtle.backward(1)
+        self.turtle.backward(5)
 
     def turn_left(self):
-        self.turtle.left(1)
+        self.turtle.left(10)
 
     def turn_right(self):
-        self.turtle.right(1)
+        self.turtle.right(10)
 
     def control(self):
         self.screen.onkeypress(self.walk_forward, "Up")
