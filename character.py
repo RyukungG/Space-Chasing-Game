@@ -1,16 +1,21 @@
 from turtle import Turtle, Screen
+import random
 
-class Player:
-    def __init__(self):
-        self.x = 0
-        self.y = 0
-        self.speed = 10
-        self.color = "white"
+class Character:
+    def __init__(self, color, speed, x=0, y=0):
+        self.x = x
+        self.y = y
+        self.color = color
+        self.speed = speed
         self.turtle = Turtle()
         self.screen = Screen()
         self.turtle.penup()
         self.turtle.speed(self.speed)
         self.turtle.color(self.color)
+
+class Player(Character):
+    def __init__(self):
+        super().__init__("white", 10)
 
     def walk_forward(self):
         self.turtle.forward(5)
@@ -32,4 +37,8 @@ class Player:
         self.screen.listen()
         self.screen.mainloop()
         self.x, self.y = self.turtle.pos()
+
+class Enemy(Character):
+    def __init__(self):
+        super().__init__("red", 5, random.randint(-300, 300), random.randint(-300, 300))
 
