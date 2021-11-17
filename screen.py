@@ -14,9 +14,9 @@ scoreboard = Score("scoreboard")
 
 e.turtle.setposition(e.x, e.y)
 
-e.hit(p, player_name)
+
 p.control()
-e.chase(p)
+e.chase(p, player_name)
 
 background.mainloop()
 
