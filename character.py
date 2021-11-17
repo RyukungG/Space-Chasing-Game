@@ -35,10 +35,14 @@ class Player(Character):
         self.screen.onkeypress(self.turn_right, "Right")
         self.screen.onkeypress(self.turn_left, "Left")
         self.screen.listen()
-        self.screen.mainloop()
         self.x, self.y = self.turtle.pos()
 
 class Enemy(Character):
     def __init__(self):
-        super().__init__("red", 5, random.randint(-300, 300), random.randint(-300, 300))
+        super().__init__("red", 5, random.randint(-400, 400), random.randint(-400, 400))
+
+    def chase(self, player):
+        self.turtle.setheading(self.turtle.towards(player.turtle.pos()))
+        self.turtle.forward(5)
+        self.screen.ontimer(self.chase(player), 1)
 
