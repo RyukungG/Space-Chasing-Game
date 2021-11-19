@@ -6,7 +6,6 @@ import time
 
 
 background = GameScreen(600, 600)
-background.create_screen()
 player_name = background.screen.textinput("Player Name", "Enter your name")
 p = Player()
 e = Enemy()
@@ -18,5 +17,5 @@ e.turtle.setposition(e.x, e.y)
 p.control()
 e.chase(p, player_name)
 
-background.mainloop()
+background.screen.mainloop()
 

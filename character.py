@@ -30,7 +30,7 @@ class Player(Character):
         self.turtle.forward(5)
         self.x, self.y = self.turtle.pos()
 
-    def walk_backwards(self):
+    def walk_backward(self):
         self.turtle.backward(5)
         self.x, self.y = self.turtle.pos()
 
@@ -47,7 +47,7 @@ class Player(Character):
 
     def control(self):
         self.screen.onkeypress(self.walk_forward, "Up")
-        self.screen.onkeypress(self.walk_backwards, "Down")
+        self.screen.onkeypress(self.walk_backward, "Down")
         self.screen.onkeypress(self.turn_right, "Right")
         self.screen.onkeypress(self.turn_left, "Left")
         self.screen.onkey(self.quit, "q")
