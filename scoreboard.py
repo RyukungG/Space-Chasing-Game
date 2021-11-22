@@ -14,7 +14,14 @@ class Score:
         except FileNotFoundError:
             with open(f"{self.filename}.json", "w") as data_file:
                 json.dump(new_data, data_file, indent=4)
+
         else:
-            data.update(new_data)
-            with open(f"{self.filename}.json", "w") as data_file:
-                json.dump(data, data_file, indent=4)
+            try:
+                if score >= data[name]:
+                    data.update(new_data)
+                    with open(f"{self.filename}.json", "w") as data_file:
+                        json.dump(data, data_file, indent=4)
+            except KeyError:
+                data.update(new_data)
+                with open(f"{self.filename}.json", "w") as data_file:
+                    json.dump(data, data_file, indent=4)
