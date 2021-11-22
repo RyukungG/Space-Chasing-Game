@@ -54,11 +54,12 @@ class Player(Character):
         self.screen.listen()
 
 
-
 class Enemy(Character):
-    def __init__(self):
+    def __init__(self, player, player_name):
         super().__init__("red", 5, random.randint(-400, 400), random.randint(-400, 400))
         self.score = Score("scoreboard")
+        self.turtle.setposition(self.x, self.y)
+        self.chase(player, player_name)
 
     def hit(self, player, player_name):
         if player.hitbox[0][0] <= self.x <= player.hitbox[0][1] \
@@ -68,7 +69,6 @@ class Enemy(Character):
             self.score.insert(player_name, int(score))
             exit()
 
-
     def chase(self, player, player_name):
         self.turtle.setheading(self.turtle.towards(player.turtle.pos()))
         self.turtle.forward(5)
@@ -76,6 +76,6 @@ class Enemy(Character):
         if player.hitbox[0][0] <= self.x <= player.hitbox[0][1] \
                 and player.hitbox[1][0] <= self.y <= player.hitbox[1][1]:
             self.hit(player, player_name)
-        self.screen.ontimer(self.chase(player, player_name), 1)
+
 
 
