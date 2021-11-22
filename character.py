@@ -73,15 +73,15 @@ class Enemy(Character):
         self.turtle.setheading(self.turtle.towards(player.turtle.pos()))
         self.turtle.forward(5)
         self.x, self.y = self.turtle.pos()
-        if player.hitbox[0][0] <= self.x <= player.hitbox[0][1] \
-                and player.hitbox[1][0] <= self.y <= player.hitbox[1][1]:
-            self.hit(player, player_name)
+        self.hit(player, player_name)
 
 class WriteScreen(Character):
-    def __init__(self):
+    def __init__(self, shape, size):
         super().__init__("white", 10)
-        self.turtle.shape("circle")
-        self.turtle.shapesize(0.1)
+        self.turtle.shape(shape)
+        self.turtle.shapesize(size)
+        self.turtle.penup()
+        self.turtle.hideturtle()
 
 
 

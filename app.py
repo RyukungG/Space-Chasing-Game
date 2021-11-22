@@ -7,7 +7,6 @@ import time
 
 background = GameScreen(600, 600)
 
-
 scoreboard = Score("scoreboard")
 
 background.play()
