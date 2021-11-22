@@ -77,5 +77,13 @@ class Enemy(Character):
                 and player.hitbox[1][0] <= self.y <= player.hitbox[1][1]:
             self.hit(player, player_name)
 
+class WriteScreen(Character):
+    def __init__(self):
+        super().__init__("white", 10)
+        self.turtle.shape("circle")
+        self.turtle.shapesize(0.1)
+
+
+
 
 
