@@ -10,3 +10,5 @@ background = GameScreen(600, 600)
 scoreboard = Score("scoreboard")
 
 background.play()
+background.scoreboard()
+

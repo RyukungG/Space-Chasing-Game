@@ -60,6 +60,7 @@ class Enemy(Character):
         self.score = Score("scoreboard")
         self.turtle.setposition(self.x, self.y)
         self.chase(player, player_name)
+        self.hit_p = False
 
     def hit(self, player, player_name):
         if player.hitbox[0][0] <= self.x <= player.hitbox[0][1] \
@@ -67,13 +68,15 @@ class Enemy(Character):
             stop = time.time()  # stop time
             score = stop - player.lifetime
             self.score.insert(player_name, int(score))
-            exit()
+            self.screen.clear()
+            self.hit_p = True
 
     def chase(self, player, player_name):
         self.turtle.setheading(self.turtle.towards(player.turtle.pos()))
         self.turtle.forward(5)
         self.x, self.y = self.turtle.pos()
         self.hit(player, player_name)
+
 
 class WriteScreen(Character):
     def __init__(self, shape, size):

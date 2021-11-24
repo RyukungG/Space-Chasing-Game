@@ -25,3 +25,10 @@ class Score:
                 data.update(new_data)
                 with open(f"{self.filename}.json", "w") as data_file:
                     json.dump(data, data_file, indent=4)
+
+    def sort_score(self):
+        with open(f"{self.filename}.json", "r") as data_file:
+            data = json.load(data_file)
+        scoreboard = sorted(data.items(), key=lambda x: x[1], reverse=True)
+        return scoreboard
+
