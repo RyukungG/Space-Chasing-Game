@@ -56,7 +56,7 @@ class Player(Character):
 
 class Enemy(Character):
     def __init__(self, player, player_name):
-        super().__init__("red", 5, random.randint(-400, 400), random.randint(-400, 400))
+        super().__init__("red", 0, random.randint(-400, 400), random.randint(-400, 400))
         self.score = Score("scoreboard")
         self.turtle.setposition(self.x, self.y)
         self.chase(player, player_name)
@@ -80,7 +80,7 @@ class Enemy(Character):
 
 class WriteScreen(Character):
     def __init__(self, shape, size):
-        super().__init__("white", 10)
+        super().__init__("white", 0)
         self.turtle.shape(shape)
         self.turtle.shapesize(size)
         self.turtle.penup()

@@ -1,4 +1,4 @@
-from turtle import Turtle, Screen
+from turtle import Screen
 from character import Player, Enemy, WriteScreen
 from scoreboard import Score
 import time
@@ -99,13 +99,13 @@ class GameScreen:
         player_name = self.screen.textinput("Player Name", "Enter your name")
         tao_write = WriteScreen("circle", 0.1)
         tao_write_score = WriteScreen("circle", 0.1)
-        tao_write_score.turtle.goto(300-(len(player_name)*7), 270)
+        tao_write_score.turtle.goto(300 - (len(player_name) * 7), 270)
         p = Player()
         all_enemy = []
 
-        tao_write.turtle.goto(250-(len(player_name)*7), 290)
+        tao_write.turtle.goto(250 - (len(player_name) * 7), 290)
         tao_write.turtle.write(f"Name: {player_name}", True, align="left", font=("Consolas", 13, "bold"))
-        tao_write.turtle.goto(250-(len(player_name)*7), 270)
+        tao_write.turtle.goto(250 - (len(player_name) * 7), 270)
         tao_write.turtle.write("Score: ", True, align="left", font=("Consolas", 13, "bold"))
 
         while True:
@@ -143,26 +143,21 @@ class GameScreen:
         tao_write.turtle.goto(0, 200)
         tao_write.turtle.write("ScoreBoard", align="center", font=("Consolas", 40, "bold"))
         if len(all_score) < 5:
-            r = range(1, len(all_score)+1)
+            r = range(1, len(all_score) + 1)
         else:
             r = range(1, 6)
         for i in r:
-            tao_write.turtle.goto(-145, 200-(i*70))
+            tao_write.turtle.goto(-145, 200 - (i * 70))
             tao_write.turtle.color("white")
-            tao_write.turtle.write(f"{all_score[i-1][0]}: ", True,
+            tao_write.turtle.write(f"{all_score[i - 1][0]}: ", True,
                                    align="left", font=("Consolas", 40, "bold"))
             tao_write.turtle.color("cyan")
             tao_write.turtle.write(f"{all_score[i - 1][1]}",
                                    align="left", font=("Consolas", 40, "bold"))
-        tao_write.turtle.color("white")
-        tao_write.turtle.goto(0, 200 - ((r[-1]+1) * 70))
-        tao_write.turtle.write(f"Press Space bar to continue",
+        tao_space = WriteScreen("circle", 0.1)
+        tao_space.turtle.goto(0, 200 - ((r[-1] + 1) * 70))
+        tao_space.turtle.write(f"Press Space bar to continue",
                                align="center", font=("Consolas", 30, "bold"))
-        self.screen.listen()
         self.screen.onkey(exit, "space")
+        self.screen.listen()
         self.screen.mainloop()
-
-
-
-
-
