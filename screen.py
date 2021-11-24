@@ -133,9 +133,6 @@ class GameScreen:
 
             self.screen.update()
 
-    def menu(self):
-        pass
-
     def scoreboard(self):
         self.screen.bgcolor("black")
         all_score = self.score.sort_score()
@@ -161,3 +158,25 @@ class GameScreen:
         self.screen.onkey(exit, "space")
         self.screen.listen()
         self.screen.mainloop()
+
+    def menu(self):
+        self.screen.addshape("SPACE_CHASING.gif")
+        logo = WriteScreen("SPACE_CHASING.gif", 0.1)
+        logo.turtle.goto(0, 130)
+        logo.turtle.showturtle()
+        logo = WriteScreen("circle", 0.1)
+        logo.turtle.goto(0, -100)
+        logo.turtle.write(f"Press Space bar to start",
+                          align="center", font=("Consolas", 30, "bold"))
+        self.screen.onkey(self.start, "space")
+        self.screen.listen()
+        self.screen.mainloop()
+
+    def start(self):
+        self.screen.clear()
+        self.create_screen()
+        self.play()
+        self.scoreboard()
+
+
+

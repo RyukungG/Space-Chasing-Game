@@ -28,19 +28,15 @@ class Player(Character):
 
     def walk_forward(self):
         self.turtle.forward(5)
-        self.x, self.y = self.turtle.pos()
 
     def walk_backward(self):
         self.turtle.backward(5)
-        self.x, self.y = self.turtle.pos()
 
     def turn_left(self):
         self.turtle.left(10)
-        self.x, self.y = self.turtle.pos()
 
     def turn_right(self):
         self.turtle.right(10)
-        self.x, self.y = self.turtle.pos()
 
     def quit(self):
         self.screen.bye()
@@ -51,6 +47,7 @@ class Player(Character):
         self.screen.onkeypress(self.turn_right, "Right")
         self.screen.onkeypress(self.turn_left, "Left")
         self.screen.onkey(self.quit, "q")
+        self.x, self.y = self.turtle.pos()
         self.screen.listen()
 
 
@@ -73,7 +70,7 @@ class Enemy(Character):
 
     def chase(self, player, player_name):
         self.turtle.setheading(self.turtle.towards(player.turtle.pos()))
-        self.turtle.forward(5)
+        self.turtle.forward(7)
         self.x, self.y = self.turtle.pos()
         self.hit(player, player_name)
 
