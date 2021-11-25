@@ -4,19 +4,16 @@ from scoreboard import Score
 import time
 
 
-class Border:
+class GameScreen:
     """
-    Define a border in 2D space with the lower-left corner, width, and height.
+    Define a game screen with width, and height.
     """
-
     def __init__(self, width, height):
         """
         initialize new border
         :param width: float
         :param height: float
         """
-        self.x = -300
-        self.y = -300
         self.width = width
         self.height = height
 
@@ -52,6 +49,21 @@ class Border:
             raise ValueError("height must be greater than zero")
         self.__height = h
 
+
+class Border(GameScreen):
+    """
+    Define a border in 2D space with the lower-left corner, width, and height.
+    """
+    def __init__(self, width, height):
+        """
+        initialize new border
+        :param width: float
+        :param height: float
+        """
+        super().__init__(width, height)
+        self.x = -300
+        self.y = -300
+
     @property
     def left(self):
         """
@@ -81,21 +93,36 @@ class Border:
         return self.y + self.height
 
 
-class GameScreen:
-    def __init__(self, width, height):
-        self.width = width
-        self.height = height
+class RunScreen(GameScreen):
+    """
+    Define a run program screen.
+    """
+    def __init__(self, width, height, logo):
+        """
+        initialize new game screen
+        :param width: float
+        :param height: float
+        :param logo: file logo name(string)
+        """
+        super().__init__(width, height)
+        self.logo = logo
         self.screen = Screen()
         self.score = Score("scoreboard")
         self.border = Border(self.width, self.height)
         self.create_screen()
 
     def create_screen(self):
+        """
+        create program screen
+        """
         self.screen.screensize(self.width, self.height)
         self.screen.setworldcoordinates(-300, -300, 300, 300)
         self.screen.bgcolor("black")
 
     def play(self):
+        """
+
+        """
         player_name = self.screen.textinput("Player Name", "Enter your name")
         tao_write = WriteScreen("circle", 0.1)
         tao_write_score = WriteScreen("circle", 0.1)
@@ -124,7 +151,7 @@ class GameScreen:
             tao_write_score.turtle.clear()
             tao_write_score.turtle.write(f"{int(score)}", align="left", font=("Consolas", 13, "bold"))
             if int(score) % 10 == 0:
-                new_e = Enemy(p, player_name)
+                new_e = Enemy()
                 all_enemy.append(new_e)
             for e in all_enemy:
                 e.chase(p, player_name)
@@ -134,6 +161,9 @@ class GameScreen:
             self.screen.update()
 
     def scoreboard(self):
+        """
+        create and show top 5 scoreboard
+        """
         self.screen.bgcolor("black")
         all_score = self.score.sort_score()
         tao_write = WriteScreen("circle", 0.1)
@@ -160,8 +190,11 @@ class GameScreen:
         self.screen.mainloop()
 
     def menu(self):
-        self.screen.addshape("SPACE_CHASING.gif")
-        logo = WriteScreen("SPACE_CHASING.gif", 0.1)
+        """
+        create menu start game with logo
+        """
+        self.screen.addshape(self.logo)
+        logo = WriteScreen(self.logo, 0.1)
         logo.turtle.goto(0, 130)
         logo.turtle.showturtle()
         logo = WriteScreen("circle", 0.1)
@@ -173,6 +206,9 @@ class GameScreen:
         self.screen.mainloop()
 
     def start(self):
+        """
+        combine all function to run game
+        """
         self.screen.clear()
         self.create_screen()
         self.play()

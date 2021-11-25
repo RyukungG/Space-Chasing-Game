@@ -2,10 +2,22 @@ import json
 
 
 class Score:
+    """
+    Define a score with filename
+    """
     def __init__(self, filename):
+        """
+        initialize new score
+        :param filename: string
+        """
         self.filename = filename
 
     def insert(self, name, score):
+        """
+        insert new score to scoreboard.json
+        :param name: Player name(string)
+        :param score: int
+        """
         new_data = {
             name: score
         }
@@ -28,6 +40,10 @@ class Score:
                     json.dump(data, data_file, indent=4)
 
     def sort_score(self):
+        """
+        sort all score in scoreboard.json from highest to lowest
+        :return: list of sorted score
+        """
         with open(f"{self.filename}.json", "r") as data_file:
             data = json.load(data_file)
         scoreboard = sorted(data.items(), key=lambda x: x[1], reverse=True)

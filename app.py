@@ -1,5 +1,7 @@
-from screen import GameScreen
+from screen import RunScreen
 
-background = GameScreen(600, 600)
+# create RunScreen object
+background = RunScreen(600, 600, "SPACE_CHASING.gif")
 
+# run game
 background.menu()
