@@ -14,7 +14,7 @@ class Score:
 
     def insert(self, name, score):
         """
-        insert new score to scoreboard.json
+        insert new score with player name to scoreboard.json
         :param name: Player name(string)
         :param score: int
         """
