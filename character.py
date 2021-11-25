@@ -195,8 +195,3 @@ class WriteScreen(Character):
         self.turtle.shapesize(size)
         self.turtle.penup()
         self.turtle.hideturtle()
-
-
-
-
-

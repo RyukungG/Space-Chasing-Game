@@ -214,6 +214,3 @@ class RunScreen(GameScreen):
         self.create_screen()
         self.play()
         self.scoreboard()
-
-
-
