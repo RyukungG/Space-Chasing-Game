@@ -132,9 +132,11 @@ class RunScreen(GameScreen):
         all_enemy = []
 
         tao_write.turtle.goto(250 - (len(player_name) * 7), 290)
-        tao_write.turtle.write(f"Name: {player_name}", True, align="left", font=("Consolas", 13, "bold"))
+        tao_write.turtle.write(f"Name: {player_name}", True,
+                               align="left", font=("Consolas", 13, "bold"))
         tao_write.turtle.goto(250 - (len(player_name) * 7), 270)
-        tao_write.turtle.write("Score: ", True, align="left", font=("Consolas", 13, "bold"))
+        tao_write.turtle.write("Score: ", True,
+                               align="left", font=("Consolas", 13, "bold"))
 
         while True:
             p.control()
@@ -150,7 +152,8 @@ class RunScreen(GameScreen):
 
             score = time.time() - p.lifetime
             tao_write_score.turtle.clear()
-            tao_write_score.turtle.write(f"{int(score)}", align="left", font=("Consolas", 13, "bold"))
+            tao_write_score.turtle.write(f"{int(score)}",
+                                         align="left", font=("Consolas", 13, "bold"))
             if int(score) % 10 == 0:
                 new_e = Enemy()
                 all_enemy.append(new_e)
@@ -169,7 +172,8 @@ class RunScreen(GameScreen):
         all_score = self.score.sort_score()
         tao_write = WriteScreen("circle", 0.1)
         tao_write.turtle.goto(0, 200)
-        tao_write.turtle.write("ScoreBoard", align="center", font=("Consolas", 40, "bold"))
+        tao_write.turtle.write("ScoreBoard",
+                               align="center", font=("Consolas", 40, "bold"))
         if len(all_score) < 5:
             r = range(1, len(all_score) + 1)
         else:
