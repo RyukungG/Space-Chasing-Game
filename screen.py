@@ -16,6 +16,7 @@ class GameScreen:
         """
         self.width = width
         self.height = height
+        self.screen = Screen()
 
     @property
     def width(self):
@@ -48,6 +49,14 @@ class GameScreen:
         if h <= 0:
             raise ValueError("height must be greater than zero")
         self.__height = h
+
+    def create_screen(self):
+        """
+        create program screen
+        """
+        self.screen.screensize(self.width, self.height)
+        self.screen.setworldcoordinates(-300, -300, 300, 300)
+        self.screen.bgcolor("black")
 
 
 class Border(GameScreen):
@@ -106,18 +115,9 @@ class RunScreen(GameScreen):
         """
         super().__init__(width, height)
         self.logo = logo
-        self.screen = Screen()
         self.score = Score("scoredata")
         self.border = Border(self.width, self.height)
         self.create_screen()
-
-    def create_screen(self):
-        """
-        create program screen
-        """
-        self.screen.screensize(self.width, self.height)
-        self.screen.setworldcoordinates(-300, -300, 300, 300)
-        self.screen.bgcolor("black")
 
     def play(self):
         """
