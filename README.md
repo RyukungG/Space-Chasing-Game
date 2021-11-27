@@ -24,3 +24,5 @@ This module contains `GameScreen` class for creating screen,
 
 ### 4.Module `app.py`
 This module implements an application that demonstrates the use of screen modules.
+
+;)
