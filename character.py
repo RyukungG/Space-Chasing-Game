@@ -96,7 +96,7 @@ class Player(Character):
         initialize new player
         """
         super().__init__("white", 10)
-        self.lifetime = time.time() # start time
+        self.lifetime = time.time()  # start time
 
     def walk_forward(self):
         """
@@ -150,7 +150,7 @@ class Enemy(Character):
         initialize new enemy
         """
         super().__init__("red", 0, random.randint(-400, 400), random.randint(-400, 400))
-        self.score = Score("scoreboard")
+        self.score = Score("scoredata")
         self.turtle.setposition(self.x, self.y)
         self.hit_p = False
 

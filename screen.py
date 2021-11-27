@@ -107,7 +107,7 @@ class RunScreen(GameScreen):
         super().__init__(width, height)
         self.logo = logo
         self.screen = Screen()
-        self.score = Score("scoreboard")
+        self.score = Score("scoredata")
         self.border = Border(self.width, self.height)
         self.create_screen()
 
