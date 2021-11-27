@@ -19,7 +19,7 @@ class Score:
         :param score: int
         """
         new_data = {
-            name: score
+            name.upper(): score
         }
         try:
             with open(f"{self.filename}.json", "r") as data_file:
@@ -48,4 +48,3 @@ class Score:
             data = json.load(data_file)
         scoreboard = sorted(data.items(), key=lambda x: x[1], reverse=True)
         return scoreboard
-
