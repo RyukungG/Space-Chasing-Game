@@ -168,14 +168,18 @@ class Enemy(Character):
             self.screen.clear()
             self.hit_p = True
 
-    def chase(self, player, player_name):
+    def chase(self, player, player_name, fast):
         """
         find and go to player position
         :param player: Player Object
         :param player_name: string
+        :param fast: enemy speed(int)
         """
         self.turtle.setheading(self.turtle.towards(player.turtle.pos()))
-        self.turtle.forward(7)
+        if fast < 6:
+            self.turtle.forward(6)
+        else:
+            self.turtle.forward(fast)
         self.x, self.y = self.turtle.pos()
         self.hit(player, player_name)
 

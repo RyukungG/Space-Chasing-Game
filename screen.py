@@ -158,7 +158,7 @@ class RunScreen(GameScreen):
                 new_e = Enemy()
                 all_enemy.append(new_e)
             for e in all_enemy:
-                e.chase(p, player_name)
+                e.chase(p, player_name, score/10)
             if any(e.hit_p for e in all_enemy):
                 break
 
