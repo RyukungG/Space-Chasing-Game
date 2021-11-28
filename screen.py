@@ -125,7 +125,7 @@ class RunScreen(GameScreen):
         It is a function that run the game and check whether the player collides with the border or not.
         Spawn enemy every 10 seconds and show player name and score on the top right corner
         """
-        player_name = self.screen.textinput("Player Name", "Enter your name")
+        player_name = self.screen.textinput("Player Name", "Enter your name").upper()
         tao_write = WriteScreen("circle", 0.1)
         tao_write_score = WriteScreen("circle", 0.1)
         tao_write_score.turtle.goto(300 - (len(player_name) * 7), 270)

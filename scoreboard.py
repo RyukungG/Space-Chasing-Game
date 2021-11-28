@@ -19,7 +19,7 @@ class Score:
         :param score: int
         """
         new_data = {
-            name.upper(): score
+            name: score
         }
         try:
             with open(f"{self.filename}.json", "r") as data_file:
