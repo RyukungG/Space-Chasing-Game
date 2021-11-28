@@ -118,6 +118,7 @@ class RunScreen(GameScreen):
         """
         super().__init__(width, height)
         self.logo = logo
+        self.url = ""
         self.score = Score("scoredata")
         self.border = Border(self.width, self.height)
         self.create_screen()
@@ -192,19 +193,19 @@ class RunScreen(GameScreen):
         tao_space.turtle.goto(0, 200 - ((r[-1] + 1) * 70))
         tao_space.turtle.write(f"Press Space bar to continue",
                                align="center", font=("Consolas", 30, "bold"))
-        self.screen.onkey(self.quit_game(player_name), "space")
-        self.screen.listen()
-        self.screen.mainloop()
-
-    def quit_game(self, player_name):
         with open("secret.json", "r") as secret:
             data = json.load(secret)
         if player_name not in data:
             key = "normal"
         else:
             key = player_name
-        url = data[key][random.randint(0, len(data[key])-1)]
-        os.system(f"start \"\" {url}")
+        self.url = data[key][random.randint(0, len(data[key])-1)]
+        self.screen.onkey(self.quit_game, "space")
+        self.screen.listen()
+        self.screen.mainloop()
+
+    def quit_game(self):
+        os.system(f"start \"\" {self.url}")
         exit()
 
     def menu(self):
