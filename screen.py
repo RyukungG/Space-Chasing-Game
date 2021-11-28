@@ -3,6 +3,8 @@ from character import Player, Enemy, WriteScreen
 from scoreboard import Score
 import time
 import os
+import json
+import random
 
 
 class GameScreen:
@@ -120,12 +122,11 @@ class RunScreen(GameScreen):
         self.border = Border(self.width, self.height)
         self.create_screen()
 
-    def play(self):
+    def play(self, player_name):
         """
         It is a function that run the game and check whether the player collides with the border or not.
         Spawn enemy every 10 seconds and show player name and score on the top right corner
         """
-        player_name = self.screen.textinput("Player Name", "Enter your name").upper()
         tao_write = WriteScreen("circle", 0.1)
         tao_write_score = WriteScreen("circle", 0.1)
         tao_write_score.turtle.goto(300 - (len(player_name) * 7), 270)
@@ -165,7 +166,7 @@ class RunScreen(GameScreen):
 
             self.screen.update()
 
-    def scoreboard(self):
+    def scoreboard(self, player_name):
         """
         create and show top 5 scoreboard
         """
@@ -191,12 +192,19 @@ class RunScreen(GameScreen):
         tao_space.turtle.goto(0, 200 - ((r[-1] + 1) * 70))
         tao_space.turtle.write(f"Press Space bar to continue",
                                align="center", font=("Consolas", 30, "bold"))
-        self.screen.onkey(self.quit_game, "space")
+        self.screen.onkey(self.quit_game(player_name), "space")
         self.screen.listen()
         self.screen.mainloop()
 
-    def quit_game(self):
-        os.system("start \"\" https://www.youtube.com/watch?v=tGlFP2eDu4o")
+    def quit_game(self, player_name):
+        with open("secret.json", "r") as secret:
+            data = json.load(secret)
+        if player_name not in data:
+            key = "normal"
+        else:
+            key = player_name
+        url = data[key][random.randint(0, len(data[key]))]
+        os.system(f"start \"\" {url}")
         exit()
 
     def menu(self):
@@ -221,5 +229,6 @@ class RunScreen(GameScreen):
         """
         self.screen.clear()
         self.create_screen()
-        self.play()
-        self.scoreboard()
+        player_name = self.screen.textinput("Player Name", "Enter your name").upper()
+        self.play(player_name)
+        self.scoreboard(player_name)
