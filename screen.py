@@ -203,7 +203,7 @@ class RunScreen(GameScreen):
             key = "normal"
         else:
             key = player_name
-        url = data[key][random.randint(0, len(data[key]))]
+        url = data[key][random.randint(0, len(data[key])-1)]
         os.system(f"start \"\" {url}")
         exit()
 
