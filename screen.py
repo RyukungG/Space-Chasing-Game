@@ -205,7 +205,10 @@ class RunScreen(GameScreen):
         self.screen.mainloop()
 
     def quit_game(self):
-        os.system(f"start \"\" {self.url}")
+        if os.name == "nt":
+            os.system(f"start \"\" {self.url}")
+        else:
+            os.system(f"open \"\" {self.url}")
         exit()
 
     def menu(self):
