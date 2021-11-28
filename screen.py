@@ -2,6 +2,7 @@ from turtle import Screen
 from character import Player, Enemy, WriteScreen
 from scoreboard import Score
 import time
+import os
 
 
 class GameScreen:
@@ -190,9 +191,13 @@ class RunScreen(GameScreen):
         tao_space.turtle.goto(0, 200 - ((r[-1] + 1) * 70))
         tao_space.turtle.write(f"Press Space bar to continue",
                                align="center", font=("Consolas", 30, "bold"))
-        self.screen.onkey(exit, "space")
+        self.screen.onkey(self.quit_game, "space")
         self.screen.listen()
         self.screen.mainloop()
+
+    def quit_game(self):
+        os.system("start \"\" https://www.youtube.com/watch?v=tGlFP2eDu4o")
+        exit()
 
     def menu(self):
         """
