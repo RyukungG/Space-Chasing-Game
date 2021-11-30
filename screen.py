@@ -164,7 +164,6 @@ class RunScreen(GameScreen):
                 e.chase(p, player_name, score/10)
             if any(e.hit_p for e in all_enemy):
                 break
-
             self.screen.update()
 
     def scoreboard(self, player_name):
