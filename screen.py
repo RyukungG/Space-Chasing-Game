@@ -1,6 +1,7 @@
 from turtle import Screen
 from character import Player, Enemy, WriteScreen
 from scoreboard import Score
+import item
 import time
 import os
 import json
@@ -126,13 +127,18 @@ class RunScreen(GameScreen):
     def play(self, player_name):
         """
         It is a function that run the game and check whether the player collides with the border or not.
-        Spawn enemy every 10 seconds and show player name and score on the top right corner
+        Spawn enemy every 10 seconds, spawn item(nuke and ender pearl) and show player name
+        and score on the top right corner
         """
+        self.screen.addshape("resource/nuke.gif")
+        self.screen.addshape("resource/Ender_Pearl.gif")
         tao_write = WriteScreen("circle", 0.1)
         tao_write_score = WriteScreen("circle", 0.1)
         tao_write_score.turtle.goto(300 - (len(player_name) * 7), 270)
         p = Player()
         all_enemy = []
+        all_item = []
+        score = 0
 
         tao_write.turtle.goto(250 - (len(player_name) * 7), 290)
         tao_write.turtle.write(f"Name: {player_name}", True,
@@ -143,7 +149,6 @@ class RunScreen(GameScreen):
 
         while True:
             p.control()
-            print(p.x, p.y)
             if p.y <= self.border.bottom:
                 p.turtle.goto(p.x, self.border.bottom)
             elif p.y >= self.border.top:
@@ -153,17 +158,28 @@ class RunScreen(GameScreen):
             elif p.x >= self.border.right:
                 p.turtle.goto(self.border.right, p.y)
 
-            score = time.time() - p.lifetime
+            if int(time.time() - p.lifetime) > score:
+                score = int(time.time() - p.lifetime)
             tao_write_score.turtle.clear()
-            tao_write_score.turtle.write(f"{int(score)}",
+            tao_write_score.turtle.write(f"{score}",
                                          align="left", font=("Consolas", 13, "bold"))
-            if int(score) % 10 == 0:
+            if score % 10 == 0:
                 new_e = Enemy()
                 all_enemy.append(new_e)
             for e in all_enemy:
                 e.chase(p, player_name, score/10)
             if any(e.hit_p for e in all_enemy):
                 break
+
+            if score % 60 == 0 and score != 0 and len(all_item) == 0:
+                nuke = item.Nuke(all_enemy)
+                all_item.append(nuke)
+            if score % 25 == 0 and score != 0 and len(all_item) == 0:
+                ender_pearl = item.EnderPearl(p)
+                all_item.append(ender_pearl)
+
+            for i in all_item:
+                i.collect(p, all_item)
             self.screen.update()
 
     def scoreboard(self, player_name):

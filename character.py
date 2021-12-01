@@ -8,7 +8,7 @@ class Character:
     """
     Define a Character with position, color and speed
     """
-    def __init__(self, color, speed, x=0, y=0):
+    def __init__(self, color, speed, size=5, x=0, y=0):
         """
         initialize new character
         :param color: string
@@ -23,6 +23,7 @@ class Character:
         self.turtle = Turtle()
         self.screen = Screen()
         self.turtle.penup()
+        self.hitbox_size = size
         self.turtle.speed(self.speed)
         self.turtle.color(self.color)
 
@@ -84,7 +85,8 @@ class Character:
         create character hitbox
         :return: list of character hitbox
         """
-        return [[self.x - 5, self.x + 5], [self.y - 5, self.y + 5]]
+        return [[self.x - self.hitbox_size, self.x + self.hitbox_size],
+                [self.y - self.hitbox_size, self.y + self.hitbox_size]]
 
 
 class Player(Character):
@@ -140,7 +142,6 @@ class Player(Character):
         self.x, self.y = self.turtle.pos()
         self.screen.listen()
 
-
 class Enemy(Character):
     """
     Define a Enemy with random position
@@ -149,7 +150,7 @@ class Enemy(Character):
         """
         initialize new enemy
         """
-        super().__init__("red", 0, random.randint(-400, 400), random.randint(-400, 400))
+        super().__init__("red", 0, 5, random.randint(-400, 400), random.randint(-400, 400))
         self.score = Score("scoredata")
         self.turtle.setposition(self.x, self.y)
         self.hit_p = False
@@ -199,3 +200,25 @@ class WriteScreen(Character):
         self.turtle.shapesize(size)
         self.turtle.penup()
         self.turtle.hideturtle()
+
+class Item(Character):
+    """
+    Define a item
+    """
+    def __init__(self, shape):
+        super().__init__("white", 0, 20, random.randint(-300, 300), random.randint(-300, 300))
+        self.turtle.setposition(self.x, self.y)
+        self.turtle.shape(shape)
+
+    def collect(self, player, item_list):
+        if player.hitbox[0][0] <= self.x <= player.hitbox[0][1] \
+                and player.hitbox[1][0] <= self.y <= player.hitbox[1][1]:
+            self.turtle.ht()
+            self.turtle.clear()
+            self.turtle.goto(1000, 1000)
+            self.x, self.y = self.turtle.pos()
+            self.activate()
+            item_list.clear()
+
+    def activate(self):
+        pass
