@@ -120,11 +120,12 @@ class RunScreen(GameScreen):
         super().__init__(width, height)
         self.logo = logo
         self.url = ""
+        self.player_name = ""
         self.score = Score("scoredata")
         self.border = Border(self.width, self.height)
         self.create_screen()
 
-    def play(self, player_name):
+    def play(self):
         """
         It is a function that run the game and check whether the player collides with the border or not.
         Spawn enemy every 10 seconds, spawn item(nuke and ender pearl) and show player name
@@ -134,16 +135,16 @@ class RunScreen(GameScreen):
         self.screen.addshape("resource/Ender_Pearl.gif")
         tao_write = WriteScreen("circle", 0.1)
         tao_write_score = WriteScreen("circle", 0.1)
-        tao_write_score.turtle.goto(300 - (len(player_name) * 7), 270)
+        tao_write_score.turtle.goto(300 - (len(self.player_name) * 7), 270)
         p = Player()
         all_enemy = []
         all_item = []
         score = 0
 
-        tao_write.turtle.goto(250 - (len(player_name) * 7), 290)
-        tao_write.turtle.write(f"Name: {player_name}", True,
+        tao_write.turtle.goto(250 - (len(self.player_name) * 7), 290)
+        tao_write.turtle.write(f"Name: {self.player_name}", True,
                                align="left", font=("Consolas", 13, "bold"))
-        tao_write.turtle.goto(250 - (len(player_name) * 7), 270)
+        tao_write.turtle.goto(250 - (len(self.player_name) * 7), 270)
         tao_write.turtle.write("Score: ", True,
                                align="left", font=("Consolas", 13, "bold"))
 
@@ -167,7 +168,7 @@ class RunScreen(GameScreen):
                 new_e = Enemy()
                 all_enemy.append(new_e)
             for e in all_enemy:
-                e.chase(p, player_name, score/10)
+                e.chase(p, self.player_name, score/10)
             if any(e.hit_p for e in all_enemy):
                 break
 
@@ -182,7 +183,7 @@ class RunScreen(GameScreen):
                 i.collect(p, all_item)
             self.screen.update()
 
-    def scoreboard(self, player_name):
+    def scoreboard(self):
         """
         create and show top 5 scoreboard
         """
@@ -208,18 +209,20 @@ class RunScreen(GameScreen):
         tao_space.turtle.goto(0, 200 - ((r[-1] + 1) * 70))
         tao_space.turtle.write(f"Press Space bar to continue",
                                align="center", font=("Consolas", 30, "bold"))
-        with open("secret.json", "r") as secret:
-            data = json.load(secret)
-        if player_name not in data:
-            key = "normal"
-        else:
-            key = player_name
-        self.url = data[key][random.randint(0, len(data[key])-1)]
-        self.screen.onkey(self.quit_game, "space")
+
+        self.screen.onkey(self.quit_game, "space", )
         self.screen.listen()
         self.screen.mainloop()
 
     def quit_game(self):
+        with open("secret.json", "r") as secret:
+            data = json.load(secret)
+        if self.player_name not in data:
+            key = "normal"
+        else:
+            key = self.player_name
+
+        self.url = data[key][random.randint(0, len(data[key])-1)]
         if os.name == "nt":
             os.system(f"start \"\" {self.url}")
         else:
@@ -248,6 +251,6 @@ class RunScreen(GameScreen):
         """
         self.screen.clear()
         self.create_screen()
-        player_name = self.screen.textinput("Player Name", "Enter your name").upper()
-        self.play(player_name)
-        self.scoreboard(player_name)
+        self.player_name = self.screen.textinput("Player Name", "Enter your name").upper()
+        self.play()
+        self.scoreboard()
