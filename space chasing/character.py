@@ -146,6 +146,7 @@ class Player(Character):
         self.x, self.y = self.turtle.pos()
         self.screen.listen()
 
+
 class Enemy(Character):
     """
     Define a Enemy with random position
@@ -205,6 +206,7 @@ class WriteScreen(Character):
         self.turtle.shapesize(size)
         self.turtle.penup()
         self.turtle.hideturtle()
+
 
 class Item(Character):
     """
