@@ -1,5 +1,5 @@
 # Project Space Chasing Game
-![logo](space chasing/resource/SPACE_CHASING.gif)
+![logo](space_chasing/resource/SPACE_CHASING.gif)
 ---
 
 ## About this project
