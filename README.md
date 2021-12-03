@@ -38,7 +38,7 @@ please download font `Consolas` into your computer.
 
 ***
 ## Program design
-### [Project UML class diagram here](Class_diagram_space_chasing.drawio.png)
+### [Project UML class diagram here](Class_diagram_space_chasing.png)
 There are 11 classes
 * `Character`: This class for creating character object.
 * `Player`: This class for create and control player.
