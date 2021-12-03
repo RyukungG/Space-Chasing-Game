@@ -11,7 +11,7 @@ class Nuke(Item):
          initialize new nuke
         :param e_list: list of enemy
         """
-        super().__init__("resource/nuke.gif", 30)
+        super().__init__("resource/nuke.gif", 11)
         self.e_list = e_list
 
     def clear_map(self):
@@ -41,7 +41,7 @@ class EnderPearl(Item):
          initialize new EnderPearl
         :param player: Player object
         """
-        super().__init__("resource/Ender_Pearl.gif", 20)
+        super().__init__("resource/Ender_Pearl.gif", 9)
         self.player = player
         self.player_x = random.randint(-290, 290)
         self.player_y = random.randint(-290, 290)

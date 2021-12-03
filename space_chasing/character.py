@@ -166,8 +166,8 @@ class Enemy(Character):
         :param player: Player Object
         :param player_name: string
         """
-        if player.hitbox[0][0] <= self.x <= player.hitbox[0][1] \
-                and player.hitbox[1][0] <= self.y <= player.hitbox[1][1]:
+        if self.hitbox[0][0] <= player.x <= self.hitbox[0][1] \
+                and self.hitbox[1][0] <= player.y <= self.hitbox[1][1]:
             stop = time.time()  # stop time
             score = stop - player.lifetime
             self.score.insert(player_name, int(score))
