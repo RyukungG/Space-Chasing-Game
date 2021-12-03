@@ -21,7 +21,7 @@ The main program will ask user for player name which will be collected with play
 * Enemy will spawn every 10 seconds, and it's speed also increase
 * Player can collect item
 * item "Nuke" will clear all enemy ![nuke](space_chasing/resource/nuke.gif)
-* item "Ender pearl" will teleport player to anywhere on the screen
+* item "Ender pearl" will teleport player to anywhere on the screen ![enderpearl](space_chasing/resource/Ender_Pearl.gif)
 * Scoreboard with top 5 high score
 * ester egg
 
