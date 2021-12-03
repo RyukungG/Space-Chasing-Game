@@ -212,12 +212,12 @@ class Item(Character):
     """
     Define a item
     """
-    def __init__(self, shape):
+    def __init__(self, shape, size):
         """
         initialize new item
         :param shape: item picture(string)
         """
-        super().__init__("white", 0, 20, random.randint(-300, 300), random.randint(-300, 300))
+        super().__init__("white", 0, size, random.randint(-300, 300), random.randint(-300, 300))
         self.turtle.setposition(self.x, self.y)
         self.turtle.shape(shape)
 
@@ -227,8 +227,8 @@ class Item(Character):
         :param player: player object
         :param item_list: list of item
         """
-        if player.hitbox[0][0] <= self.x <= player.hitbox[0][1] \
-                and player.hitbox[1][0] <= self.y <= player.hitbox[1][1]:
+        if self.hitbox[0][0] <= player.x <= self.hitbox[0][1] \
+                and self.hitbox[1][0] <= player.y <= self.hitbox[1][1]:
             self.turtle.ht()
             self.turtle.clear()
             self.turtle.goto(1000, 1000)
