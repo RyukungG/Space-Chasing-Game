@@ -6,6 +6,7 @@
 In this game, player has to control the player's spaceship to dodge enemy ships that are chasing the player.
 Which during the game will have item drops for player to collect. If player collides with enemy it will make the game over.
 After that the game will show top 5 scoreboard and update score into the `scoredata.json` file
+
 ***
 ## Project overview and features
 The main program will ask user for player name which will be collected with player score in `scoredata.json`
@@ -19,6 +20,7 @@ The main program will ask user for player name which will be collected with play
 * item "Ender pearl" will teleport player to anywhere on the screen
 * Scoreboard with top 5 high score
 * ester egg
+
 ***
 ## Requirement
 ### Module
@@ -27,6 +29,9 @@ The main program will ask user for player name which will be collected with play
 * `json`
 * `time`
 * `random`
+
+please download font `Consolas` into your computer.
+
 ***
 ## Code structure
 My application have 6(+1) main file which are `character.py`, `scoreboard.py`,
