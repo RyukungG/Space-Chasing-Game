@@ -1,5 +1,5 @@
 # Project Space Chasing Game
-
+![logo](space chasing/resource/SPACE_CHASING.gif)
 ---
 
 ## About this project
@@ -33,28 +33,41 @@ The main program will ask user for player name which will be collected with play
 please download font `Consolas` into your computer.
 
 ***
+## Program design
+### [Project UML class diagram here](Class diagram space chasing.drawio.png)
+There are 11 classes
+* `Character`: This class for creating character object.
+* `Player`: This class for create and control player.
+* `Enemy`: This class for create enemy and chase player.
+* `WriteScreen`: This class for screen writer.
+* `Item`: This class for create item and check that player collect item or not.
+* `Score`: this class for creating and sorting a score database file.
+* `GameScreen`: This class for creating screen
+* `Border`: This class for create a border surrounding map
+* `RunScreen`: This class for use of all the modules above and combine all functions to run entire game. 
+* `Nuke`: This class for create nuke item
+* `EnderPearl`: This class for create ender pearl item
+
+***
 ## Code structure
 My application have 6(+1) main file which are `character.py`, `scoreboard.py`,
 `screen.py`, `item.py`, `secret.json`, `app.py`, `scoredata.json`
 
 ### 1.`character.py`
-This module contains `Character` class for creating character object, 
-`Player` class that is a subclass of `Character` for create and control player, 
-`Enemy` class that is a subclass of `Character` for create enemy and chase player and 
-`WriteScreen` class that is a subclass of `Character` for screen writer.
-`Item` class that is a subclass of `Character` for create item and check that player collect item or not.
+This module contains `Character` class,`Player` class that is a subclass of `Character`, 
+`Enemy` class that is a subclass of `Character`, `WriteScreen` class that is a subclass of `Character` and 
+`Item` class that is a subclass of `Character`.
 
 ### 2.`scoreboard.py`
-This module contains the `Score` class for creating and sorting a score database file.
+This module contains the `Score` class.
 
 ### 3.`screen.py`
-This module contains `GameScreen` class for creating screen,
-`Border` class that is a subclass of `GameScreen` for create a border surrounding map, 
-`RunScreen` class that is a subclass of `GameScreen` for use of all the modules above and combine all functions to run entire game. 
+This module contains `GameScreen` class,`Border` class that is a subclass of `GameScreen`, 
+`RunScreen` class that is a subclass of `GameScreen`. 
 
 ### 4.`item.py`
-This module contains `Nuke` class that is a subclass of `Item` from `character.py` for create nuke item and 
-`EnderPearl` class that is a subclass of `Item` class for create ender pearl item
+This module contains `Nuke` class that is a subclass of `Item` class from `character.py` and 
+`EnderPearl` class that is a subclass of `Item` class.
 
 ### 5.`secret.json`
 json file for collecting ester egg data
