@@ -36,6 +36,7 @@ class Character:
 
     @x.setter
     def x(self, num):
+        # check if x is int or float or not
         if not isinstance(num, (int, float)):
             raise TypeError("The x attribute must be a number")
         self.__x = num
@@ -49,6 +50,7 @@ class Character:
 
     @y.setter
     def y(self, num):
+        # check if y is int or float or not
         if not isinstance(num, (int, float)):
             raise TypeError("The y attribute must be a number")
         self.__y = num
@@ -62,6 +64,7 @@ class Character:
 
     @color.setter
     def color(self, color):
+        # check if color is string or not
         if not isinstance(color, str):
             raise TypeError("color must be a string")
         self.__color = color
@@ -75,6 +78,7 @@ class Character:
 
     @speed.setter
     def speed(self, speed):
+        # check if speed is int or not
         if not isinstance(speed, int):
             raise TypeError("speed must be a integer")
         self.__speed = speed
@@ -177,6 +181,7 @@ class Enemy(Character):
         :param fast: enemy speed(int)
         """
         self.turtle.setheading(self.turtle.towards(player.turtle.pos()))
+        # increase enemy speed
         if fast < 6:
             self.turtle.forward(6)
         else:
@@ -206,11 +211,20 @@ class Item(Character):
     Define a item
     """
     def __init__(self, shape):
+        """
+        initialize new item
+        :param shape: item picture(string)
+        """
         super().__init__("white", 0, 20, random.randint(-300, 300), random.randint(-300, 300))
         self.turtle.setposition(self.x, self.y)
         self.turtle.shape(shape)
 
     def collect(self, player, item_list):
+        """
+        check that player position is on the item or not and activate item function
+        :param player: player object
+        :param item_list: list of item
+        """
         if player.hitbox[0][0] <= self.x <= player.hitbox[0][1] \
                 and player.hitbox[1][0] <= self.y <= player.hitbox[1][1]:
             self.turtle.ht()

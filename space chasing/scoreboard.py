@@ -29,6 +29,8 @@ class Score:
                 json.dump(new_data, data_file, indent=4)
 
         else:
+            # check player name in data file or not if not add new and
+            # check new score that player can do is greater than last time or not
             try:
                 if score >= data[name]:
                     data.update(new_data)

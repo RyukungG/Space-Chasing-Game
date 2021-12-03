@@ -147,9 +147,11 @@ class RunScreen(GameScreen):
         tao_write.turtle.goto(250 - (len(self.player_name) * 7), 270)
         tao_write.turtle.write("Score: ", True,
                                align="left", font=("Consolas", 13, "bold"))
-
+        # run game
         while True:
             p.control()
+
+            # check player hit border or not
             if p.y <= self.border.bottom:
                 p.turtle.goto(p.x, self.border.bottom)
             elif p.y >= self.border.top:
@@ -159,11 +161,12 @@ class RunScreen(GameScreen):
             elif p.x >= self.border.right:
                 p.turtle.goto(self.border.right, p.y)
 
-            if int(time.time() - p.lifetime) > score:
-                score = int(time.time() - p.lifetime)
+            score = int(time.time() - p.lifetime)
             tao_write_score.turtle.clear()
             tao_write_score.turtle.write(f"{score}",
                                          align="left", font=("Consolas", 13, "bold"))
+
+            # enemy part
             if score % 10 == 0:
                 new_e = Enemy()
                 all_enemy.append(new_e)
@@ -172,15 +175,16 @@ class RunScreen(GameScreen):
             if any(e.hit_p for e in all_enemy):
                 break
 
+            # item part
             if score % 60 == 0 and score != 0 and len(all_item) == 0:
                 nuke = item.Nuke(all_enemy)
                 all_item.append(nuke)
             if score % 25 == 0 and score != 0 and len(all_item) == 0:
                 ender_pearl = item.EnderPearl(p)
                 all_item.append(ender_pearl)
-
             for i in all_item:
                 i.collect(p, all_item)
+
             self.screen.update()
 
     def scoreboard(self):
@@ -193,6 +197,7 @@ class RunScreen(GameScreen):
         tao_write.turtle.goto(0, 200)
         tao_write.turtle.write("ScoreBoard",
                                align="center", font=("Consolas", 40, "bold"))
+
         if len(all_score) < 5:
             r = range(1, len(all_score) + 1)
         else:
@@ -219,18 +224,22 @@ class RunScreen(GameScreen):
         self.screen.mainloop()
 
     def quit_game(self):
+        """
+        quit game and run an ester egg
+        """
         with open("secret.json", "r") as secret:
             data = json.load(secret)
         if self.player_name not in data:
             key = "normal"
         else:
             key = self.player_name
-
-        self.url = data[key][random.randint(0, len(data[key])-1)]
+        self.url = data[key][random.randint(0, len(data[key])-1)]  # random ester egg link
+        # check that this computer is window or mac os
         if os.name == "nt":
             os.system(f"start \"\" {self.url}")
         else:
             os.system(f"open \"\" {self.url}")
+
         exit()
 
     def menu(self):
