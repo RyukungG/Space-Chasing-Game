@@ -154,11 +154,11 @@ class RunScreen(GameScreen):
             # check player hit border or not
             if p.y <= self.border.bottom:
                 p.turtle.goto(p.x, self.border.bottom)
-            elif p.y >= self.border.top:
+            if p.y >= self.border.top:
                 p.turtle.goto(p.x, self.border.top)
-            elif p.x <= self.border.left:
+            if p.x <= self.border.left:
                 p.turtle.goto(self.border.left, p.y)
-            elif p.x >= self.border.right:
+            if p.x >= self.border.right:
                 p.turtle.goto(self.border.right, p.y)
 
             score = int(time.time() - p.lifetime)
