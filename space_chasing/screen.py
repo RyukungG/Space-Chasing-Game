@@ -176,7 +176,7 @@ class RunScreen(GameScreen):
                 break
 
             # item part
-            if score % 10 == 0 and score != 0 and len(all_item) == 0:
+            if score % 60 == 0 and score != 0 and len(all_item) == 0:
                 nuke = item.Nuke(all_enemy)
                 all_item.append(nuke)
             if score % 25 == 0 and score != 0 and len(all_item) == 0:
