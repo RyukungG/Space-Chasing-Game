@@ -214,7 +214,7 @@ class RunScreen(GameScreen):
         tao_space.turtle.goto(0, 200 - ((r[-1] + 1) * 70))
         tao_space.turtle.write(f"Press Space bar to continue",
                                align="center", font=("Consolas", 30, "bold"))
-        tao_space.turtle.goto(0, 200 - ((r[-1] + 1) * 80))
+        tao_space.turtle.goto(0, 200 - ((r[-1] + 2) * 70))
         tao_space.turtle.write(f"Press esc to quit",
                                align="center", font=("Consolas", 30, "bold"))
 
