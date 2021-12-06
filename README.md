@@ -27,6 +27,10 @@ The main program will ask user for player name which will be collected with play
 
 ***
 ## Requirement
+
+### Python version
+* Python 3.9 or better
+
 ### Module
 * `turtle`
 * `os`
