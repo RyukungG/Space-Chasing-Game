@@ -49,4 +49,5 @@ class Score:
         with open(f"{self.filename}.json", "r") as data_file:
             data = json.load(data_file)
         scoreboard = sorted(data.items(), key=lambda x: x[1], reverse=True)
+        # lambda use for create short func in this code use for get values
         return scoreboard

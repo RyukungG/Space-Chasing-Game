@@ -203,7 +203,7 @@ class RunScreen(GameScreen):
         else:
             r = range(1, 6)
         for i in r:
-            tao_write.turtle.goto(-145, 200 - (i * 70))
+            tao_write.turtle.goto(-145, (200 - (i * 70)))
             tao_write.turtle.color("white")
             tao_write.turtle.write(f"{all_score[i - 1][0]}: ", True,
                                    align="left", font=("Consolas", 40, "bold"))
@@ -211,10 +211,10 @@ class RunScreen(GameScreen):
             tao_write.turtle.write(f"{all_score[i - 1][1]}",
                                    align="left", font=("Consolas", 40, "bold"))
         tao_space = WriteScreen("circle", 0.1)
-        tao_space.turtle.goto(0, 200 - ((r[-1] + 1) * 70))
+        tao_space.turtle.goto(0, (200 - ((r[-1] + 1) * 70)))
         tao_space.turtle.write(f"Press Space bar to continue",
                                align="center", font=("Consolas", 30, "bold"))
-        tao_space.turtle.goto(0, 200 - ((r[-1] + 2) * 70))
+        tao_space.turtle.goto(0, (200 - ((r[-1] + 2) * 70)))
         tao_space.turtle.write(f"Press esc to quit",
                                align="center", font=("Consolas", 30, "bold"))
 
