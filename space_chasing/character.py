@@ -8,6 +8,7 @@ class Character:
     """
     Define a Character with position, color and speed
     """
+
     def __init__(self, color, speed, size=5, x=0, y=0):
         """
         initialize new character
@@ -89,14 +90,17 @@ class Character:
         create character hitbox
         :return: list of character hitbox
         """
-        return [[self.x - self.hitbox_size, self.x + self.hitbox_size],
-                [self.y - self.hitbox_size, self.y + self.hitbox_size]]
+        return [
+            [self.x - self.hitbox_size, self.x + self.hitbox_size],
+            [self.y - self.hitbox_size, self.y + self.hitbox_size],
+        ]
 
 
 class Player(Character):
     """
     Define a Player with life time
     """
+
     def __init__(self):
         """
         initialize new player
@@ -151,11 +155,14 @@ class Enemy(Character):
     """
     Define a Enemy with random position
     """
+
     def __init__(self):
         """
         initialize new enemy
         """
-        super().__init__("red", 0, 5, random.randint(-400, 400), random.randint(-400, 400))
+        super().__init__(
+            "red", 0, 5, random.randint(-400, 400), random.randint(-400, 400)
+        )
         self.score = Score("scoredata")
         self.turtle.setposition(self.x, self.y)
         self.hit_p = False
@@ -166,8 +173,10 @@ class Enemy(Character):
         :param player: Player Object
         :param player_name: string
         """
-        if self.hitbox[0][0] <= player.x <= self.hitbox[0][1] \
-                and self.hitbox[1][0] <= player.y <= self.hitbox[1][1]:
+        if (
+            self.hitbox[0][0] <= player.x <= self.hitbox[0][1]
+            and self.hitbox[1][0] <= player.y <= self.hitbox[1][1]
+        ):
             stop = time.time()  # stop time
             score = stop - player.lifetime
             self.score.insert(player_name, int(score))
@@ -195,6 +204,7 @@ class WriteScreen(Character):
     """
     Define a screen writer
     """
+
     def __init__(self, shape, size):
         """
         initialize new WriteScreen
@@ -212,12 +222,15 @@ class Item(Character):
     """
     Define a item
     """
+
     def __init__(self, shape, size):
         """
         initialize new item
         :param shape: item picture(string)
         """
-        super().__init__("white", 0, size, random.randint(-300, 300), random.randint(-300, 300))
+        super().__init__(
+            "white", 0, size, random.randint(-300, 300), random.randint(-300, 300)
+        )
         self.turtle.setposition(self.x, self.y)
         self.turtle.shape(shape)
 
@@ -227,8 +240,10 @@ class Item(Character):
         :param player: player object
         :param item_list: list of item
         """
-        if self.hitbox[0][0] <= player.x <= self.hitbox[0][1] \
-                and self.hitbox[1][0] <= player.y <= self.hitbox[1][1]:
+        if (
+            self.hitbox[0][0] <= player.x <= self.hitbox[0][1]
+            and self.hitbox[1][0] <= player.y <= self.hitbox[1][1]
+        ):
             self.turtle.ht()
             self.turtle.clear()
             self.turtle.goto(1000, 1000)

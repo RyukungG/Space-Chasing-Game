@@ -12,6 +12,7 @@ class GameScreen:
     """
     Define a game screen with width, and height.
     """
+
     def __init__(self, width, height):
         """
         initialize new border
@@ -67,6 +68,7 @@ class Border(GameScreen):
     """
     Define a border in 2D space with the lower-left corner, width, and height.
     """
+
     def __init__(self, width, height):
         """
         initialize new border
@@ -110,6 +112,7 @@ class RunScreen(GameScreen):
     """
     Define a run program screen.
     """
+
     def __init__(self, width, height, logo):
         """
         initialize new game screen
@@ -142,11 +145,16 @@ class RunScreen(GameScreen):
         score = 0
 
         tao_write.turtle.goto(250 - (len(self.player_name) * 7), 290)
-        tao_write.turtle.write(f"Name: {self.player_name}", True,
-                               align="left", font=("Consolas", 13, "bold"))
+        tao_write.turtle.write(
+            f"Name: {self.player_name}",
+            True,
+            align="left",
+            font=("Consolas", 13, "bold"),
+        )
         tao_write.turtle.goto(250 - (len(self.player_name) * 7), 270)
-        tao_write.turtle.write("Score: ", True,
-                               align="left", font=("Consolas", 13, "bold"))
+        tao_write.turtle.write(
+            "Score: ", True, align="left", font=("Consolas", 13, "bold")
+        )
         # run game
         while True:
             p.control()
@@ -163,15 +171,16 @@ class RunScreen(GameScreen):
 
             score = int(time.time() - p.lifetime)
             tao_write_score.turtle.clear()
-            tao_write_score.turtle.write(f"{score}",
-                                         align="left", font=("Consolas", 13, "bold"))
+            tao_write_score.turtle.write(
+                f"{score}", align="left", font=("Consolas", 13, "bold")
+            )
 
             # enemy part
             if score % 10 == 0:
                 new_e = Enemy()
                 all_enemy.append(new_e)
             for e in all_enemy:
-                e.chase(p, self.player_name, score/10)
+                e.chase(p, self.player_name, score / 10)
             if any(e.hit_p for e in all_enemy):
                 break
 
@@ -195,8 +204,9 @@ class RunScreen(GameScreen):
         all_score = self.score.sort_score()
         tao_write = WriteScreen("circle", 0.1)
         tao_write.turtle.goto(0, 200)
-        tao_write.turtle.write("ScoreBoard",
-                               align="center", font=("Consolas", 40, "bold"))
+        tao_write.turtle.write(
+            "ScoreBoard", align="center", font=("Consolas", 40, "bold")
+        )
 
         if len(all_score) < 5:
             r = range(1, len(all_score) + 1)
@@ -205,18 +215,25 @@ class RunScreen(GameScreen):
         for i in r:
             tao_write.turtle.goto(-145, (200 - (i * 70)))
             tao_write.turtle.color("white")
-            tao_write.turtle.write(f"{all_score[i - 1][0]}: ", True,
-                                   align="left", font=("Consolas", 40, "bold"))
+            tao_write.turtle.write(
+                f"{all_score[i - 1][0]}: ",
+                True,
+                align="left",
+                font=("Consolas", 40, "bold"),
+            )
             tao_write.turtle.color("cyan")
-            tao_write.turtle.write(f"{all_score[i - 1][1]}",
-                                   align="left", font=("Consolas", 40, "bold"))
+            tao_write.turtle.write(
+                f"{all_score[i - 1][1]}", align="left", font=("Consolas", 40, "bold")
+            )
         tao_space = WriteScreen("circle", 0.1)
         tao_space.turtle.goto(0, (200 - ((r[-1] + 1) * 70)))
-        tao_space.turtle.write("Press Space bar to continue",
-                               align="center", font=("Consolas", 30, "bold"))
+        tao_space.turtle.write(
+            "Press Space bar to continue", align="center", font=("Consolas", 30, "bold")
+        )
         tao_space.turtle.goto(0, (200 - ((r[-1] + 2) * 70)))
-        tao_space.turtle.write("Press esc to quit",
-                               align="center", font=("Consolas", 30, "bold"))
+        tao_space.turtle.write(
+            "Press esc to quit", align="center", font=("Consolas", 30, "bold")
+        )
 
         self.screen.onkey(self.menu, "space")
         self.screen.onkey(self.quit_game, "Escape")
@@ -233,12 +250,14 @@ class RunScreen(GameScreen):
             key = "normal"
         else:
             key = self.player_name
-        self.url = data[key][random.randint(0, len(data[key])-1)]  # random ester egg link
+        self.url = data[key][
+            random.randint(0, len(data[key]) - 1)
+        ]  # random ester egg link
         # check that this computer is window or mac os
         if os.name == "nt":
-            os.system(f"start \"\" {self.url}")
+            os.system(f'start "" {self.url}')
         else:
-            os.system(f"open \"\" {self.url}")
+            os.system(f'open "" {self.url}')
 
         exit()
 
@@ -253,8 +272,9 @@ class RunScreen(GameScreen):
         logo.turtle.showturtle()
         logo = WriteScreen("circle", 0.1)
         logo.turtle.goto(0, -100)
-        logo.turtle.write("Press Space bar to start",
-                          align="center", font=("Consolas", 30, "bold"))
+        logo.turtle.write(
+            "Press Space bar to start", align="center", font=("Consolas", 30, "bold")
+        )
         self.screen.onkey(self.start, "space")
         self.screen.listen()
         self.screen.mainloop()
@@ -265,6 +285,8 @@ class RunScreen(GameScreen):
         """
         self.screen.clear()
         self.create_screen()
-        self.player_name = self.screen.textinput("Player Name", "Enter your name").upper()
+        self.player_name = self.screen.textinput(
+            "Player Name", "Enter your name"
+        ).upper()
         self.play()
         self.scoreboard()

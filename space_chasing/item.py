@@ -6,6 +6,7 @@ class Nuke(Item):
     """
     Define a Nuke item
     """
+
     def __init__(self, e_list):
         """
          initialize new nuke
@@ -36,6 +37,7 @@ class EnderPearl(Item):
     """
     Define a EnderPearl item
     """
+
     def __init__(self, player):
         """
          initialize new EnderPearl
@@ -48,7 +50,7 @@ class EnderPearl(Item):
 
     def teleport(self):
         """
-         teleport player around the map
+        teleport player around the map
         """
         self.player.turtle.setposition(self.player_x, self.player_y)
         self.player.x, self.player.y = self.turtle.pos()

@@ -5,6 +5,7 @@ class Score:
     """
     Define a score with filename
     """
+
     def __init__(self, filename):
         """
         initialize new score
@@ -18,9 +19,7 @@ class Score:
         :param name: Player name(string)
         :param score: int
         """
-        new_data = {
-            name: score
-        }
+        new_data = {name: score}
         try:
             with open(f"{self.filename}.json", "r") as data_file:
                 data = json.load(data_file)
