@@ -212,10 +212,10 @@ class RunScreen(GameScreen):
                                    align="left", font=("Consolas", 40, "bold"))
         tao_space = WriteScreen("circle", 0.1)
         tao_space.turtle.goto(0, (200 - ((r[-1] + 1) * 70)))
-        tao_space.turtle.write(f"Press Space bar to continue",
+        tao_space.turtle.write("Press Space bar to continue",
                                align="center", font=("Consolas", 30, "bold"))
         tao_space.turtle.goto(0, (200 - ((r[-1] + 2) * 70)))
-        tao_space.turtle.write(f"Press esc to quit",
+        tao_space.turtle.write("Press esc to quit",
                                align="center", font=("Consolas", 30, "bold"))
 
         self.screen.onkey(self.menu, "space")
@@ -253,7 +253,7 @@ class RunScreen(GameScreen):
         logo.turtle.showturtle()
         logo = WriteScreen("circle", 0.1)
         logo.turtle.goto(0, -100)
-        logo.turtle.write(f"Press Space bar to start",
+        logo.turtle.write("Press Space bar to start",
                           align="center", font=("Consolas", 30, "bold"))
         self.screen.onkey(self.start, "space")
         self.screen.listen()
