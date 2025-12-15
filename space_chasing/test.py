@@ -1,5 +1,4 @@
 import pytest
-import types
 from character import Character, Player, Enemy, Item
 
 # absolute import of classes to test (module is a namespace package)
@@ -19,7 +18,7 @@ class MockTurtle:
 
     def pos(self):
         return self._pos
-    
+
     def penup(self):
         pass
 
